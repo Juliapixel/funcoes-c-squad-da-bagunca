@@ -14,30 +14,44 @@ int receber_valor() {
 }
 
 int main(int argc, char const *argv[]) {
-    char escolha;
+    while (1) {
+        char escolha;
 
-    printf("Escolha a operação (+, -, * ou /): ");
-    scanf("%c", &escolha);
-    int a = receber_valor();
-    int b = receber_valor();
+        printf("Escolha a operação (+, -, * ou /) ou \"s\" para sair: ");
+        scanf(" %c", &escolha);
+        int a, b;
 
-    switch (escolha) {
-        case '+':
-            printf("Resultado: %d\n", somar(a, b));
-            break;
-        case '-':
-            printf("Resultado: %d\n", subtrair(a, b));
-            break;
-        case '*':
-            printf("Resultado: %d\n", multiplicar(a, b));
-            break;
-        case '/':
-            if (b == 0) {
-                printf("Não é possível realizar divisão por 0");
-                return 1;
-            }
-            printf("Resultado: %d\n", dividir(a, b));
-            break;
+        switch (escolha) {
+            case '+':
+                a = receber_valor();
+                b = receber_valor();
+                printf("Resultado: %d\n", somar(a, b));
+                break;
+            case '-':
+                a = receber_valor();
+                b = receber_valor();
+                printf("Resultado: %d\n", subtrair(a, b));
+                break;
+            case '*':
+                a = receber_valor();
+                b = receber_valor();
+                printf("Resultado: %d\n", multiplicar(a, b));
+                break;
+            case '/':
+                a = receber_valor();
+                b = receber_valor();
+                if (b == 0) {
+                    printf("Não é possível realizar divisão por 0\n");
+                    break;
+                }
+                printf("Resultado: %d\n", dividir(a, b));
+                break;
+            case 's':
+                return 0;
+            default:
+                printf("Escolha uma opção válida\n");
+                break;
+        }
     }
     return 0;
 }
